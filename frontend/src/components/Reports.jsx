@@ -317,22 +317,22 @@ export default function Reports() {
           </div>
         </div>
 
-        <div className="report-preview-box" style={{ background: '#0E0D14', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-subtle)', lineHeight: 1.7 }}>
-          <h3 style={{ color: 'var(--color-permanganate)', fontSize: '1.1rem', marginBottom: '0.6rem' }}>
+        <div className="report-preview-box">
+          <h3 className="report-preview-title">
             {projectTitle}
           </h3>
-          <p style={{ color: 'var(--color-oxide-silver)', fontSize: '0.82rem', marginBottom: '1rem' }}>
+          <p className="report-preview-subtitle">
             Prepared by <strong>{evaluatorName}</strong> for <strong>{leaseBlock}</strong>
           </p>
 
-          <p style={{ fontSize: '0.82rem', color: 'var(--color-ice-white)', marginBottom: '0.75rem' }}>
+          <p className="report-preview-body">
             This technical document provides an evidence-based remote sensing synthesis combining Sentinel-2 L2A multispectral observations,
             Sentinel-1 SAR structural lineament densities, and DEM topographic curvature.
             The machine learning prospectivity pipeline is calibrated using Positive-Unlabeled (PU) sampling against verified Geological Survey of India occurrences
             and evaluated using <strong>Spatial Block Cross-Validation (5 geographic blocks)</strong> to eliminate spatial autocorrelation bias.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem', marginTop: '1rem' }}>
+          <div className="report-preview-metrics-grid">
             <div className="metric-box">
               <span className="metric-num text-violet">
                 {status?.model_metrics?.random_forest?.roc_auc?.toFixed(3) || '0.884'}

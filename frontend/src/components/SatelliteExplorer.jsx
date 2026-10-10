@@ -218,7 +218,7 @@ export default function SatelliteExplorer({ onStatusMessage, bbox: externalBbox,
                 <p style={{ margin: '0 0 0.4rem 0', color: 'var(--color-oxide-silver)' }}>
                   Set your client ID and secret in <code>backend/.env</code>:
                 </p>
-                <pre style={{ margin: '0 0 0.4rem 0', padding: '0.5rem', background: '#0E0D14', borderRadius: '6px', color: 'var(--color-permanganate)', fontFamily: 'var(--font-mono)' }}>
+                <pre className="code-preview-block">
 SH_CLIENT_ID=your-copernicus-client-id{'\n'}
 SH_CLIENT_SECRET=your-copernicus-client-secret
                 </pre>

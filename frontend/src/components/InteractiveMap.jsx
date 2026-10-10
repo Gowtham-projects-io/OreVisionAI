@@ -235,7 +235,7 @@ export default function InteractiveMap({
                     ✓ Verified Ground Truth (GSI)
                   </div>
                   <strong>{occ.name}</strong>
-                  <div style={{ fontSize: '0.72rem', color: '#C9D1E0', marginTop: '2px' }}>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--color-oxide-silver)', marginTop: '2px' }}>
                     {occ.district}, {occ.state}
                   </div>
                   <div style={{ fontSize: '0.72rem', marginTop: '3px' }}>
@@ -279,7 +279,7 @@ export default function InteractiveMap({
                     <div style={{ fontSize: '0.74rem', marginTop: '3px' }}>
                       <strong>Score:</strong> {(tgt.prospectivity_score * 100).toFixed(1)}% · <strong>Conf:</strong> {tgt.confidence_pct}%
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#C9D1E0', marginTop: '2px' }}>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--color-oxide-silver)', marginTop: '2px' }}>
                       {tgt.dominant_indicator}
                     </div>
                     <div style={{ fontSize: '0.68rem', color: '#F472A8', marginTop: '3px', fontStyle: 'italic' }}>

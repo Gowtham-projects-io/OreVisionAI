@@ -713,7 +713,7 @@ export default function ManganeseProspectivity({ initialBbox, onStatusMessage })
 
         {/* Uploader Drawer */}
         {showUploader && (
-          <div className="uploader-drawer" style={{ marginBottom: '1.2rem', padding: '1rem', background: '#0E0D14', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
+          <div className="uploader-drawer">
             <div className="form-group">
               <label className="form-label">
                 Paste GSI Bhukosh CSV or GeoJSON FeatureCollection:

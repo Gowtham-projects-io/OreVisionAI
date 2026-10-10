@@ -316,7 +316,7 @@ export default function IndiaAtlas({ onSelectAOI, onNavigateTab, onStatusMessage
                       <div style={{ fontSize: '0.74rem', marginTop: '3px' }}>
                         <strong>Reserves:</strong> {st.estimated_reserves_mt} MT ({st.national_share_pct}% national share)
                       </div>
-                      <div style={{ fontSize: '0.72rem', color: '#C9D1E0', marginTop: '2px' }}>
+                      <div style={{ fontSize: '0.72rem', color: 'var(--color-oxide-silver)', marginTop: '2px' }}>
                         Districts: {st.districts.map(d => d.district_name).join(', ')}
                       </div>
                       <div style={{ marginTop: '6px' }}>
@@ -361,7 +361,7 @@ export default function IndiaAtlas({ onSelectAOI, onNavigateTab, onStatusMessage
                         <div style={{ fontSize: '0.74rem', marginTop: '3px' }}>
                           <strong>Grade:</strong> {dt.average_grade} · <strong>Reserve:</strong> {dt.reserve_mt} MT
                         </div>
-                        <div style={{ fontSize: '0.72rem', color: '#C9D1E0', marginTop: '2px' }}>
+                        <div style={{ fontSize: '0.72rem', color: 'var(--color-oxide-silver)', marginTop: '2px' }}>
                           Mines: {dt.key_mines.join(', ')}
                         </div>
                         <div style={{ marginTop: '6px' }}>
@@ -398,7 +398,7 @@ export default function IndiaAtlas({ onSelectAOI, onNavigateTab, onStatusMessage
                       ✓ Verified GSI Ground Truth ({occ.id})
                     </div>
                     <strong>{occ.name}</strong>
-                    <div style={{ fontSize: '0.72rem', color: '#C9D1E0', marginTop: '2px' }}>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--color-oxide-silver)', marginTop: '2px' }}>
                       {occ.district}, {occ.state}
                     </div>
                     <div style={{ fontSize: '0.72rem', marginTop: '3px' }}>
@@ -466,7 +466,7 @@ export default function IndiaAtlas({ onSelectAOI, onNavigateTab, onStatusMessage
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <strong style={{ fontSize: '0.95rem', color: isSelected ? '#FFFFFF' : 'var(--color-ice-white)' }}>
+                      <strong style={{ fontSize: '0.95rem', color: isSelected ? 'var(--color-permanganate)' : 'var(--color-ice-white)' }}>
                         {st.state_name}
                       </strong>
                       <span className="badge badge-rose" style={{ fontSize: '0.65rem' }}>
