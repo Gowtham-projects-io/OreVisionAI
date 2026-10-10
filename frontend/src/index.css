@@ -1,0 +1,2065 @@
+/* ═══════════════════════════════════════════════════════════════
+   OreVision AI — Satellite Manganese Intelligence
+   Theme: "Permanganate + Rhodochrosite" Mineralogy System
+   Dark Mode (default) + Light Mode via [data-theme="light"]
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── 1. Manganese Mineralogy Colour Palette — DARK (default) ─ */
+  --color-pyrolusite: #0E0D14;
+  --color-psilomelane: #1A1824;
+  --color-psilomelane-card: #14121F;
+  --color-psilomelane-elevated: #242132;
+  --color-permanganate: #8B5CF6;
+  --color-rhodochrosite: #F472A8;
+  --color-oxide-silver: #C9D1E0;
+  --color-ice-white: #F5F7FB;
+  --color-verified-green: #6EE7A8;
+  --color-alert-amber: #FBBF24;
+
+  /* Semantic Aliases */
+  --bg-main: var(--color-pyrolusite);
+  --bg-card: var(--color-psilomelane);
+  --bg-card-subtle: var(--color-psilomelane-card);
+  --bg-subtle: rgba(26, 24, 36, 0.75);
+  --text-main: var(--color-ice-white);
+  --text-muted: var(--color-oxide-silver);
+
+  --border-subtle: rgba(139, 92, 246, 0.16);
+  --border-active: var(--color-permanganate);
+  --border-rose: var(--color-rhodochrosite);
+  --accent-gradient-thin: linear-gradient(90deg, #8B5CF6 0%, #F472A8 100%);
+  --accent-gradient-border: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(244, 114, 168, 0.4));
+
+  --glow-violet: 0 0 16px rgba(139, 92, 246, 0.28);
+  --glow-rose: 0 0 16px rgba(244, 114, 168, 0.25);
+  --glow-active-border: 0 0 12px rgba(139, 92, 246, 0.35);
+
+  --navbar-bg: rgba(14, 13, 20, 0.94);
+  --tabnav-bg: rgba(20, 18, 31, 0.9);
+  --statusbar-bg: var(--color-pyrolusite);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  --transition-fast: 200ms ease;
+  --transition-smooth: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-crossfade: 250ms ease;
+  --transition-slow: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Light Mode Override — Rhodonite Mineral Light Theme ───── */
+[data-theme="light"] {
+  --color-pyrolusite: #F0EEF8;
+  --color-psilomelane: #FFFFFF;
+  --color-psilomelane-card: #F6F4FE;
+  --color-psilomelane-elevated: #EDE9FB;
+  --color-permanganate: #7C3AED;
+  --color-rhodochrosite: #DB2777;
+  --color-oxide-silver: #4B5563;
+  --color-ice-white: #1A1828;
+  --color-verified-green: #059669;
+  --color-alert-amber: #D97706;
+
+  --bg-main: var(--color-pyrolusite);
+  --bg-card: var(--color-psilomelane);
+  --bg-card-subtle: var(--color-psilomelane-card);
+  --bg-subtle: rgba(240, 238, 248, 0.85);
+  --text-main: var(--color-ice-white);
+  --text-muted: var(--color-oxide-silver);
+
+  --border-subtle: rgba(124, 58, 237, 0.14);
+  --border-active: var(--color-permanganate);
+  --border-rose: var(--color-rhodochrosite);
+  --accent-gradient-thin: linear-gradient(90deg, #7C3AED 0%, #DB2777 100%);
+  --accent-gradient-border: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(219, 39, 119, 0.3));
+
+  --glow-violet: 0 2px 12px rgba(124, 58, 237, 0.18);
+  --glow-rose: 0 2px 12px rgba(219, 39, 119, 0.15);
+  --glow-active-border: 0 2px 10px rgba(124, 58, 237, 0.22);
+
+  --navbar-bg: rgba(255, 255, 255, 0.92);
+  --tabnav-bg: rgba(246, 244, 254, 0.95);
+  --statusbar-bg: #EDE9FB;
+}
+
+/* Smooth transition when switching themes */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+/* ── Theme Toggle Button ─────────────────────────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-psilomelane);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-oxide-silver);
+  cursor: pointer;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+.theme-toggle:hover {
+  border-color: var(--color-permanganate);
+  color: var(--color-ice-white);
+  box-shadow: var(--glow-violet);
+}
+
+/* Light mode specific overrides for elements that use hardcoded dark colors */
+[data-theme="light"] .navbar {
+  background: var(--navbar-bg) !important;
+  border-bottom-color: rgba(124, 58, 237, 0.14);
+}
+[data-theme="light"] .tab-nav {
+  background: var(--tabnav-bg);
+  border-bottom-color: rgba(124, 58, 237, 0.12);
+}
+[data-theme="light"] .tab-btn {
+  color: var(--color-oxide-silver);
+}
+[data-theme="light"] .tab-btn:hover {
+  background: rgba(124, 58, 237, 0.07);
+  border-color: rgba(124, 58, 237, 0.2);
+  color: var(--color-ice-white);
+}
+[data-theme="light"] .tab-btn.active {
+  background: rgba(124, 58, 237, 0.12);
+  border-color: var(--color-permanganate);
+  color: var(--color-ice-white);
+}
+[data-theme="light"] .status-bar {
+  background: var(--statusbar-bg);
+  border-top-color: rgba(124, 58, 237, 0.14);
+}
+[data-theme="light"] .card {
+  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.07);
+}
+[data-theme="light"] .card:hover {
+  border-color: rgba(124, 58, 237, 0.3);
+}
+[data-theme="light"] .btn-primary,
+[data-theme="light"] .btn-teal-glow {
+  color: #FFFFFF;
+}
+[data-theme="light"] .btn-secondary {
+  background: var(--color-psilomelane-card);
+  border-color: rgba(75, 85, 99, 0.25);
+}
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-select,
+[data-theme="light"] .form-textarea {
+  background: var(--color-psilomelane);
+  border-color: rgba(124, 58, 237, 0.2);
+  color: var(--color-ice-white);
+}
+[data-theme="light"] .form-input:focus,
+[data-theme="light"] .form-select:focus,
+[data-theme="light"] .form-textarea:focus {
+  border-color: var(--color-permanganate);
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.18);
+}
+[data-theme="light"] .navbar-status {
+  background: var(--color-psilomelane-card);
+  border-color: rgba(124, 58, 237, 0.14);
+}
+[data-theme="light"] .cosmic-glow {
+  opacity: 0.06;
+}
+[data-theme="light"] .terrain-grid-wireframe {
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.06) 1px, transparent 1px);
+}
+[data-theme="light"] .topographic-contours {
+  opacity: 0.04;
+}
+[data-theme="light"] .alert-info {
+  background: rgba(124, 58, 237, 0.06);
+  border-color: rgba(124, 58, 237, 0.25);
+}
+[data-theme="light"] .alert-amber,
+[data-theme="light"] .alert-warning {
+  background: rgba(217, 119, 6, 0.07);
+}
+[data-theme="light"] .alert-error {
+  background: rgba(254, 226, 226, 0.9);
+  border-color: #EF4444;
+  color: #991B1B;
+}
+[data-theme="light"] .toast {
+  background: var(--color-psilomelane);
+  border-color: rgba(124, 58, 237, 0.2);
+  color: var(--color-ice-white);
+}
+[data-theme="light"] .leaflet-popup-content-wrapper {
+  background: var(--color-psilomelane) !important;
+  color: var(--color-ice-white) !important;
+}
+[data-theme="light"] .leaflet-popup-tip {
+  background: var(--color-psilomelane) !important;
+}
+[data-theme="light"] .data-table th {
+  background: var(--color-psilomelane-card);
+  color: var(--color-oxide-silver);
+}
+[data-theme="light"] .data-table td {
+  color: var(--color-ice-white);
+}
+[data-theme="light"] .data-table tr:hover {
+  background: rgba(124, 58, 237, 0.05);
+}
+[data-theme="light"] .osm-dark-tiles {
+  filter: brightness(0.97) contrast(102%);
+}
+[data-theme="light"] .mobile-nav-toggle {
+  background: var(--color-psilomelane-card);
+  border-color: rgba(124, 58, 237, 0.14);
+}
+[data-theme="light"] .tab-nav {
+  background: var(--color-psilomelane);
+}
+
+/* ── Reset & Base ────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  background-color: var(--color-pyrolusite);
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--color-pyrolusite);
+  color: var(--color-ice-white);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbars in Psilomelane / Permanganate */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-pyrolusite);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-psilomelane-elevated);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-permanganate);
+}
+
+/* ── App Layout ──────────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-pyrolusite);
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3.5rem;
+}
+
+/* ── Navbar ──────────────────────────────────────────────── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(14, 13, 20, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 1.5rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  cursor: pointer;
+  min-height: 48px; /* Touch target */
+}
+
+.brand-icon-wrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(26, 24, 36, 0.9);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--glow-violet);
+}
+
+.brand-crystal-symbol {
+  width: 22px;
+  height: 22px;
+}
+
+.navbar-title h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-ice-white);
+  line-height: 1.2;
+}
+
+.navbar-title span {
+  font-size: 0.72rem;
+  color: var(--color-oxide-silver);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.navbar-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: var(--color-psilomelane);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  min-height: 36px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.status-dot.ok {
+  background: var(--color-verified-green);
+  box-shadow: 0 0 8px var(--color-verified-green);
+}
+.status-dot.checking {
+  background: var(--color-permanganate);
+  animation: pulseDot 1.4s infinite;
+}
+.status-dot.error {
+  background: #EF4444;
+  box-shadow: 0 0 8px #EF4444;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Mobile Nav Toggle (48px Touch Target for Android Chrome) */
+.mobile-nav-toggle {
+  display: none;
+  background: var(--color-psilomelane);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-ice-white);
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 1.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Tab Navigation ──────────────────────────────────────── */
+.tab-nav {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  background: rgba(20, 18, 31, 0.9);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.12);
+  overflow-x: auto;
+  align-items: center;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  min-height: 48px; /* Android Chrome touch target */
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-oxide-silver);
+  border: 1px solid transparent;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--color-ice-white);
+  background: rgba(26, 24, 36, 0.85);
+  border-color: rgba(139, 92, 246, 0.25);
+}
+
+.tab-btn.active {
+  color: var(--color-ice-white);
+  background: rgba(139, 92, 246, 0.16);
+  border-color: var(--color-permanganate);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.25);
+  font-weight: 600;
+}
+
+.tab-icon {
+  font-size: 1.05rem;
+}
+
+/* ── Futuristic Hero Landing Page ────────────────────────── */
+.futuristic-hero {
+  position: relative;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem 4rem;
+  overflow: hidden;
+}
+
+.hero-cosmic-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle violet / rose ambient backdrops (strictly low opacity) */
+.cosmic-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.12;
+}
+
+.cosmic-glow.teal-glow,
+.cosmic-glow.violet-glow {
+  top: 10%;
+  left: 20%;
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, var(--color-permanganate), transparent 70%);
+}
+
+.cosmic-glow.copper-glow,
+.cosmic-glow.rose-glow {
+  bottom: 15%;
+  right: 18%;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, var(--color-rhodochrosite), transparent 70%);
+}
+
+/* Faint terrain grid & drifting contour lines */
+.terrain-grid-wireframe {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  transform: perspective(600px) rotateX(65deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.topographic-contours {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: radial-gradient(circle at 50% 50%, var(--color-oxide-silver) 1px, transparent 1px);
+  background-size: 36px 36px;
+  animation: driftingContours 35s linear infinite;
+}
+
+@keyframes driftingContours {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0.5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+.hero-content-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Animated Mineral Crystal Logo & Slow Orbiting Satellite ── */
+.hero-logo-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbital-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(139, 92, 246, 0.28);
+}
+
+/* Slow orbiting satellite around crystal logo */
+.orbital-ring.ring-outer {
+  width: 144px;
+  height: 144px;
+  animation: orbitRotate 30s linear infinite;
+}
+
+.orbital-ring.ring-mid {
+  width: 110px;
+  height: 110px;
+  border: 1px solid rgba(244, 114, 168, 0.22);
+  animation: orbitRotateRev 22s linear infinite;
+}
+
+.orbital-ring.ring-inner {
+  width: 82px;
+  height: 82px;
+  border: 1px dotted rgba(201, 209, 224, 0.3);
+}
+
+.satellite-node {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-permanganate);
+  box-shadow: 0 0 10px var(--color-permanganate);
+}
+
+.mineral-crystal-core {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.35));
+  animation: floatCrystal 5s ease-in-out infinite;
+}
+
+.crystal-svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes orbitRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbitRotateRev {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes floatCrystal {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 6px 16px;
+  border-radius: 99px;
+  background: var(--color-psilomelane);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 1.25rem;
+}
+
+.badge-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-permanganate);
+  box-shadow: 0 0 8px var(--color-permanganate);
+}
+
+.badge-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--color-oxide-silver);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.hero-heading {
+  font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  color: var(--color-ice-white);
+}
+
+/* Thin accent gradient text */
+.text-gradient-violet-rose,
+.text-gradient-teal {
+  background: var(--accent-gradient-thin);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.18rem);
+  color: var(--color-oxide-silver);
+  max-width: 680px;
+  line-height: 1.6;
+  margin-bottom: 2.2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3.5rem;
+}
+
+.btn-hero {
+  padding: 0.85rem 1.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  min-height: 48px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hero-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.telemetry-card {
+  background: var(--color-psilomelane);
+  border: 1px solid rgba(139, 92, 246, 0.12);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  text-align: left;
+  backdrop-filter: blur(10px);
+}
+
+.telemetry-label {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--color-oxide-silver);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.35rem;
+}
+
+.telemetry-value {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-ice-white);
+  margin-bottom: 0.2rem;
+}
+
+.telemetry-sub {
+  font-size: 0.72rem;
+  color: var(--color-rhodochrosite);
+  font-family: var(--font-mono);
+}
+
+/* ── Mission Stage Tracker (01 Acquire, 02 Analyze, 03 Prioritise) ── */
+.mission-stage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.9rem 1.4rem;
+  background: var(--color-psilomelane);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  overflow-x: auto;
+}
+
+.stage-step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0.6;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-smooth);
+  border: 1px solid transparent;
+}
+
+/* Glowing active border on active stage */
+.stage-step.active {
+  opacity: 1;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid var(--color-permanganate);
+  box-shadow: var(--glow-active-border);
+}
+
+.stage-step.done {
+  opacity: 0.9;
+}
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-permanganate);
+}
+
+.stage-step.active .step-num {
+  color: var(--color-rhodochrosite);
+}
+
+.step-title {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--color-ice-white);
+}
+
+.step-tag {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--color-oxide-silver);
+  background: var(--color-pyrolusite);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.stage-arrow {
+  color: var(--color-oxide-silver);
+  font-size: 0.85rem;
+  opacity: 0.4;
+}
+
+/* ── Cards & Panels ──────────────────────────────────────── */
+.card {
+  background: var(--color-psilomelane);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: border-color var(--transition-smooth);
+}
+
+.card:hover {
+  border-color: rgba(139, 92, 246, 0.28);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-ice-white);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.card-subtitle {
+  font-size: 0.78rem;
+  color: var(--color-oxide-silver);
+  margin-top: 0.25rem;
+}
+
+/* ── Buttons (Permanganate Violet & 48px touch targets) ──── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0.6rem 1.2rem;
+  min-height: 48px; /* Android Chrome touch target recommendation */
+  transition: all var(--transition-fast);
+  color: var(--color-ice-white);
+}
+
+/* Primary Permanganate Violet Button */
+.btn-primary,
+.btn-teal-glow {
+  background: var(--color-permanganate);
+  color: #FFFFFF;
+  font-weight: 600;
+  border-color: rgba(139, 92, 246, 0.4);
+}
+.btn-primary:hover:not(:disabled),
+.btn-teal-glow:hover:not(:disabled) {
+  background: #9D75F8;
+  box-shadow: var(--glow-violet);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--color-psilomelane-card);
+  color: var(--color-ice-white);
+  border-color: rgba(201, 209, 224, 0.2);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--color-psilomelane-elevated);
+  border-color: var(--color-permanganate);
+  color: var(--color-ice-white);
+}
+
+/* Rhodochrosite Rose Button & Accent */
+.btn-rose-accent,
+.btn-copper-glow {
+  background: var(--color-rhodochrosite);
+  color: #0E0D14;
+  font-weight: 700;
+  box-shadow: var(--glow-rose);
+}
+.btn-rose-accent:hover:not(:disabled),
+.btn-copper-glow:hover:not(:disabled) {
+  background: #F889B7;
+  box-shadow: 0 0 20px rgba(244, 114, 168, 0.4);
+}
+
+.btn-copper-border,
+.btn-rose-border {
+  border-color: var(--color-rhodochrosite);
+  color: var(--color-rhodochrosite);
+  background: transparent;
+}
+.btn-copper-border:hover:not(:disabled),
+.btn-rose-border:hover:not(:disabled) {
+  background: rgba(244, 114, 168, 0.12);
+  color: #FFFFFF;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-oxide-silver);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--color-ice-white);
+}
+
+.btn-active-violet {
+  background: rgba(139, 92, 246, 0.22);
+  border-color: var(--color-permanganate);
+  color: var(--color-ice-white);
+}
+
+.btn-preset-rose {
+  background: rgba(244, 114, 168, 0.08);
+  border-color: rgba(244, 114, 168, 0.25);
+  color: var(--color-oxide-silver);
+}
+.btn-preset-rose:hover:not(:disabled) {
+  background: rgba(244, 114, 168, 0.18);
+  border-color: var(--color-rhodochrosite);
+  color: var(--color-ice-white);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.78rem;
+  min-height: 40px;
+}
+.btn-xs {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.74rem;
+  min-height: 36px;
+}
+.btn-lg {
+  padding: 0.75rem 1.6rem;
+  font-size: 0.95rem;
+  min-height: 50px;
+}
+.btn-full {
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Badges ──────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  padding: 4px 9px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
+.badge-teal,
+.badge-violet {
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--color-ice-white);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+}
+
+.badge-copper,
+.badge-rose {
+  background: rgba(244, 114, 168, 0.15);
+  color: var(--color-rhodochrosite);
+  border: 1px solid rgba(244, 114, 168, 0.4);
+}
+
+/* Verified Green: SUCCESS ONLY */
+.badge-lime,
+.badge-green {
+  background: rgba(110, 231, 168, 0.15);
+  color: var(--color-verified-green);
+  border: 1px solid rgba(110, 231, 168, 0.4);
+}
+
+/* Alert Amber: WARNINGS & NO-DATA */
+.badge-amber {
+  background: rgba(251, 191, 36, 0.15);
+  color: var(--color-alert-amber);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.badge-graphite {
+  background: var(--color-psilomelane-card);
+  color: var(--color-oxide-silver);
+  border: 1px solid rgba(201, 209, 224, 0.15);
+}
+
+/* ── Form Inputs (Touch Friendly >= 48px) ────────────────── */
+.form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 180px;
+}
+
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-oxide-silver);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.form-input, .form-select, .form-textarea {
+  background: var(--color-pyrolusite);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--color-ice-white);
+  padding: 0.65rem 0.9rem;
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
+  outline: none;
+  min-height: 48px; /* Android Chrome touch target */
+  transition: border-color var(--transition-fast);
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--color-permanganate);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.25);
+}
+
+/* Range input styled with Permanganate Violet */
+input[type="range"] {
+  accent-color: var(--color-permanganate);
+  min-height: 32px;
+}
+
+/* ── Interactive Map Container & Top Bar ─────────────────── */
+.interactive-map-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.map-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.4rem 0.6rem;
+  background: var(--color-psilomelane-card);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.basemap-pill-group,
+.target-sectors-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.bar-subhead {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--color-oxide-silver);
+  margin-right: 0.25rem;
+}
+
+.map-wrapper {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: inset 0 0 20px rgba(14, 13, 20, 0.85);
+}
+
+/* Dark OSM Tiles filter */
+.osm-dark-tiles {
+  filter: brightness(0.65) invert(100%) hue-rotate(210deg) contrast(95%);
+}
+
+.map-bottom-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  background: var(--color-pyrolusite);
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+}
+
+.meta-bbox {
+  color: var(--color-oxide-silver);
+}
+.meta-hint {
+  color: var(--color-rhodochrosite);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIGNATURE MOTION: Manganese Oxide Dendrite Loading
+   Thin violet branches grow across the map / card edge like
+   pyrolusite dendrites on rock, tied to actual request stages.
+   ══════════════════════════════════════════════════════════════ */
+.scanning-overlay-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 500;
+  overflow: hidden;
+}
+
+/* Supporting motion: Soft Violet Scanning Beam (single sweep during requests) */
+.soft-violet-scan-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #8B5CF6 30%, #F472A8 70%, transparent);
+  box-shadow: 0 0 16px 4px rgba(139, 92, 246, 0.45);
+  animation: softVioletBeam 2.8s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+@keyframes softVioletBeam {
+  0% { top: 0%; opacity: 0; }
+  15% { opacity: 0.9; }
+  85% { opacity: 0.9; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* SVG Dendrite Frame across map edges */
+.oxide-dendrite-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 510;
+}
+
+.dendrite-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Primary Stem & Branch growth path animation */
+.dendrite-stem {
+  fill: none;
+  stroke: var(--color-permanganate);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 450;
+  stroke-dashoffset: 450;
+  animation: dendriteStemGrow 2.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  filter: drop-shadow(0 0 4px rgba(139, 92, 246, 0.6));
+}
+
+.dendrite-branch {
+  fill: none;
+  stroke: var(--color-rhodochrosite);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: dendriteBranchGrow 2s 0.8s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  filter: drop-shadow(0 0 3px rgba(244, 114, 168, 0.5));
+}
+
+@keyframes dendriteStemGrow {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes dendriteBranchGrow {
+  to { stroke-dashoffset: 0; }
+}
+
+.scanning-stage-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(14, 13, 20, 0.92);
+  border: 1px solid var(--color-permanganate);
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-ice-white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--glow-violet);
+  z-index: 520;
+}
+
+.pulse-dendrite-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-rhodochrosite);
+  box-shadow: 0 0 8px var(--color-rhodochrosite);
+  animation: pulseDot 1s infinite;
+}
+
+/* ── Image Reveal Animation (Fade-in with slight zoom + rose outline) ── */
+.discovery-card.discovery-reveal-animation {
+  animation: imageRevealFadeZoom 350ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  border: 2px solid var(--color-rhodochrosite) !important;
+  box-shadow: 0 0 24px rgba(244, 114, 168, 0.28) !important;
+}
+
+@keyframes imageRevealFadeZoom {
+  0% {
+    opacity: 0;
+    transform: scale(1.025);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.discovery-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(244, 114, 168, 0.12);
+  border: 1px solid var(--color-rhodochrosite);
+  color: var(--color-ice-white);
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 0.74rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.discovery-blip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-rhodochrosite);
+  box-shadow: 0 0 8px var(--color-rhodochrosite);
+}
+
+/* ── 250ms Layer Toggle Crossfades ───────────────────────── */
+.data-layers-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 0.75rem;
+  background: var(--color-pyrolusite);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(139, 92, 246, 0.12);
+}
+
+.layer-bar-title {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--color-oxide-silver);
+  margin-right: 0.3rem;
+}
+
+.leaflet-image-layer {
+  transition: opacity var(--transition-crossfade) !important;
+}
+
+/* ── Map Popups ──────────────────────────────────────────── */
+.map-popup-card {
+  color: var(--color-ice-white);
+  font-family: var(--font-ui);
+  min-width: 200px;
+  line-height: 1.45;
+}
+
+.map-popup-tag {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.map-popup-tag.text-green { color: var(--color-verified-green); }
+.map-popup-tag.text-rose { color: var(--color-rhodochrosite); }
+
+.leaflet-popup-content-wrapper {
+  background: var(--color-psilomelane) !important;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px !important;
+  color: var(--color-ice-white) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.7) !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--color-psilomelane) !important;
+}
+
+/* ── Map Legend Strip ────────────────────────────────────── */
+.map-legend-strip {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  background: var(--color-pyrolusite);
+  border-radius: var(--radius-sm);
+  font-size: 0.74rem;
+  color: var(--color-oxide-silver);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.legend-color-box {
+  width: 14px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.legend-color-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* ── Visualisation Options (250ms crossfade) ─────────────── */
+.viz-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.viz-option {
+  background: var(--color-psilomelane-card);
+  border: 1px solid rgba(139, 92, 246, 0.14);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-crossfade);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-height: 80px;
+}
+
+.viz-option:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: var(--color-psilomelane-elevated);
+}
+
+.viz-option.active {
+  border-color: var(--color-permanganate);
+  background: rgba(139, 92, 246, 0.16);
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.22);
+}
+
+.viz-option-icon {
+  font-size: 1.2rem;
+}
+
+/* ── Metrics Summary Grid ────────────────────────────────── */
+.metrics-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.metric-box {
+  background: var(--color-psilomelane-card);
+  border: 1px solid rgba(139, 92, 246, 0.12);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.metric-num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  line-height: 1.1;
+  color: var(--color-ice-white);
+}
+
+.metric-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-ice-white);
+}
+
+.metric-sub {
+  font-size: 0.68rem;
+  color: var(--color-oxide-silver);
+  font-family: var(--font-mono);
+}
+
+/* Mineralogy Text Colors */
+.text-violet { color: var(--color-permanganate); }
+.text-rose { color: var(--color-rhodochrosite); }
+.text-silver { color: var(--color-oxide-silver); }
+.text-green { color: var(--color-verified-green); }
+.text-amber { color: var(--color-alert-amber); }
+
+/* Compatibility aliases for older tags */
+.text-teal { color: var(--color-permanganate); }
+.text-copper { color: var(--color-rhodochrosite); }
+.text-lime { color: var(--color-verified-green); }
+
+/* ── Feature Importance Meters ───────────────────────────── */
+.feature-importance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feature-meter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.74rem;
+}
+
+.feature-name {
+  width: 220px;
+  flex-shrink: 0;
+  color: var(--color-oxide-silver);
+  font-family: var(--font-mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meter-track {
+  flex: 1;
+  height: 6px;
+  background: var(--color-pyrolusite);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  background: var(--color-permanganate);
+  border-radius: 99px;
+  transition: width 350ms ease;
+}
+
+.meter-fill-copper,
+.meter-fill-rose {
+  background: var(--color-rhodochrosite);
+}
+
+.meter-pct {
+  width: 50px;
+  text-align: right;
+  font-family: var(--font-mono);
+  color: var(--color-ice-white);
+}
+
+/* ── Target Evidence Inspector ───────────────────────────── */
+.target-evidence-panel {
+  border-color: rgba(244, 114, 168, 0.45) !important;
+  background: var(--color-psilomelane-card) !important;
+  box-shadow: 0 0 20px rgba(244, 114, 168, 0.16) !important;
+}
+
+.target-designation-badge {
+  background: rgba(244, 114, 168, 0.1);
+  border: 1px solid var(--color-rhodochrosite);
+  color: var(--color-rhodochrosite);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  margin-bottom: 1rem;
+}
+
+.evidence-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.evidence-metric {
+  background: var(--color-pyrolusite);
+  padding: 0.75rem;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.metric-label {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--color-oxide-silver);
+}
+
+.metric-val {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-ice-white);
+}
+
+.recommendation-box {
+  background: var(--color-pyrolusite);
+  border-left: 3px solid var(--color-rhodochrosite);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--color-oxide-silver);
+}
+
+/* ── Data Tables ─────────────────────────────────────────── */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.data-table th {
+  background: var(--color-pyrolusite);
+  color: var(--color-oxide-silver);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.08);
+  color: var(--color-ice-white);
+  white-space: nowrap;
+}
+
+.data-table tr:hover {
+  background: rgba(139, 92, 246, 0.06);
+}
+
+.data-table tr.row-selected {
+  background: rgba(244, 114, 168, 0.12) !important;
+}
+
+/* ── Alerts & Disclaimers (Honesty Rules) ────────────────── */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 1.15rem;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.alert-info {
+  background: var(--color-psilomelane);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: var(--color-ice-white);
+}
+
+.alert-amber,
+.alert-warning {
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid var(--color-alert-amber);
+  color: var(--color-ice-white);
+}
+
+.alert-error {
+  background: rgba(45, 15, 25, 0.9);
+  border: 1px solid #EF4444;
+  color: #FEE2E2;
+}
+
+.alert-icon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.disclaimer-note {
+  font-size: 0.76rem;
+  color: var(--color-oxide-silver);
+  background: var(--color-pyrolusite);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(244, 114, 168, 0.25);
+  line-height: 1.5;
+}
+
+/* ── Satellite Image Display Container ───────────────────── */
+.satellite-image-container {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-pyrolusite);
+  border: 1px solid var(--border-subtle);
+  max-width: 600px;
+}
+
+.satellite-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-overlay-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(14, 13, 20, 0.88);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  font-size: 0.72rem;
+  color: var(--color-oxide-silver);
+  font-family: var(--font-mono);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.observation-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.details-card {
+  background: var(--color-pyrolusite);
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  border-radius: 6px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.details-label {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--color-oxide-silver);
+}
+
+.details-val {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--color-ice-white);
+}
+
+/* ── Scene List in Explorer ──────────────────────────────── */
+.scene-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.scene-item {
+  background: var(--color-pyrolusite);
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 48px; /* Android Chrome touch target */
+  transition: all var(--transition-fast);
+}
+
+.scene-item:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: var(--color-psilomelane-card);
+}
+
+.scene-item.selected {
+  border-color: var(--color-permanganate);
+  background: rgba(139, 92, 246, 0.14);
+}
+
+.scene-id {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--color-ice-white);
+}
+
+.scene-meta {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.72rem;
+  color: var(--color-oxide-silver);
+}
+
+/* ── Status Bar / Footer ─────────────────────────────────── */
+.status-bar {
+  background: var(--color-pyrolusite);
+  border-top: 1px solid rgba(139, 92, 246, 0.12);
+  padding: 0.6rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: var(--color-oxide-silver);
+  font-family: var(--font-mono);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ── Toast Notifications ─────────────────────────────────── */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  background: var(--color-psilomelane);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1.2rem;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+}
+
+.toast.success { border-color: var(--color-verified-green); }
+.toast.error { border-color: #EF4444; }
+
+/* ── Spinners & Loaders ──────────────────────────────────── */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+.scanning-radar-loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(139, 92, 246, 0.25);
+  border-top-color: var(--color-permanganate);
+  animation: spin 1s linear infinite;
+  margin-bottom: 0.75rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY & REDUCED MOTION (prefers-reduced-motion)
+   Swaps animations to static progress indicators.
+   ══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .orbital-ring,
+  .soft-violet-scan-beam,
+  .dendrite-stem,
+  .dendrite-branch,
+  .mineral-crystal-core,
+  .topographic-contours {
+    animation: none !important;
+  }
+  /* Fallback static progress bar */
+  .scanning-overlay-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-gradient-thin);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVENESS (Android Chrome First · Touch Targets >= 48px)
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Navbar ── */
+  .navbar {
+    padding: 0 1rem;
+    height: 60px;
+  }
+  .navbar-title span {
+    display: none; /* hide subtitle on small screens */
+  }
+  .navbar-status span {
+    display: none; /* show only the dot on mobile */
+  }
+  .navbar-status {
+    padding: 6px 10px;
+    min-height: 36px;
+  }
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  /* ── Tab Nav Drawer ── */
+  .tab-nav {
+    display: none;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--color-psilomelane);
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 0.6rem;
+  }
+  .tab-nav.mobile-open {
+    display: flex;
+    animation: drawerFadeIn 200ms ease;
+  }
+  @keyframes drawerFadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .tab-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.75rem 1rem;
+    min-height: 48px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Main Content ── */
+  .main-content {
+    padding: 1rem 0.85rem 5rem;
+  }
+
+  /* ── Hero Section ── */
+  .futuristic-hero {
+    padding: 1.5rem 0.5rem 3rem;
+    min-height: auto;
+  }
+  .hero-logo-container {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 1.25rem;
+  }
+  .orbital-ring.ring-outer { width: 106px; height: 106px; }
+  .orbital-ring.ring-mid  { width: 82px;  height: 82px;  }
+  .orbital-ring.ring-inner{ width: 62px;  height: 62px;  }
+  .mineral-crystal-core   { width: 52px;  height: 52px;  }
+  .hero-heading {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-hero {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-telemetry-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  /* ── Mission Stage Tracker ── */
+  .mission-stage-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .stage-step {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .stage-arrow {
+    display: none;
+  }
+
+  /* ── Cards ── */
+  .card {
+    padding: 1rem;
+  }
+  .card-header {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  /* ── Map Controls ── */
+  .map-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .basemap-pill-group,
+  .target-sectors-group {
+    width: 100%;
+  }
+  .map-bottom-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  .data-layers-bar {
+    gap: 0.4rem;
+  }
+  .map-legend-strip {
+    gap: 0.75rem;
+  }
+
+  /* ── Feature Importance Meters ── */
+  .feature-name {
+    width: 110px;
+    font-size: 0.68rem;
+  }
+  .feature-meter-row {
+    gap: 0.5rem;
+  }
+
+  /* ── Metrics & Evidence Grids ── */
+  .metrics-summary-grid,
+  .evidence-metrics-grid,
+  .observation-details-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .metric-num {
+    font-size: 1.3rem;
+  }
+
+  /* ── Viz Selector ── */
+  .viz-selector {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  /* ── Forms ── */
+  .form-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .form-group {
+    min-width: unset;
+    width: 100%;
+  }
+
+  /* ── Satellite Image ── */
+  .satellite-image-container {
+    max-width: 100%;
+  }
+
+  /* ── Scene List ── */
+  .scene-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    padding: 0.85rem 0.9rem;
+  }
+  .scene-meta {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  /* ── Status Bar ── */
+  .status-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.6rem 1rem;
+    gap: 0.2rem;
+    font-size: 0.68rem;
+  }
+  .status-bar > div:nth-child(2) {
+    display: none; /* hide verbose pilot area text on mobile */
+  }
+
+  /* ── Toasts ── */
+  .toast-container {
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+  }
+  .toast {
+    font-size: 0.78rem;
+    padding: 0.65rem 1rem;
+  }
+
+  /* ── Tables ── */
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem 0.65rem;
+    font-size: 0.76rem;
+  }
+}
+
+/* ── Extra-small screens (≤ 480px) ── */
+@media (max-width: 480px) {
+  .hero-telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+  .metrics-summary-grid,
+  .evidence-metrics-grid,
+  .observation-details-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-heading {
+    font-size: clamp(1.5rem, 9vw, 2rem);
+  }
+  .navbar-brand .navbar-title h1 {
+    font-size: 1rem;
+  }
+  .hero-badge {
+    padding: 5px 12px;
+  }
+  .badge-text {
+    font-size: 0.65rem;
+  }
+  .card {
+    padding: 0.85rem;
+    border-radius: var(--radius-md);
+  }
+  .feature-name {
+    width: 90px;
+  }
+  .telemetry-card {
+    padding: 0.75rem;
+  }
+}
