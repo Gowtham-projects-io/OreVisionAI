@@ -257,22 +257,28 @@ SH_CLIENT_SECRET=your-copernicus-client-secret
             </div>
           ) : (
             <div className="scene-list">
-              {scenes.scenes.map(scene => (
-                <div
-                  key={scene.scene_id}
-                  className={`scene-item ${selectedScene?.scene_id === scene.scene_id ? 'selected' : ''}`}
-                  onClick={() => setSelectedScene(scene)}
-                  id={`scene-${scene.scene_id.slice(-12)}`}
-                >
-                  <div className="scene-id">{scene.scene_id}</div>
-                  <div className="scene-meta">
-                    <span className="scene-meta-item">📅 {scene.acquisition_date?.slice(0, 10)}</span>
-                    <span className="scene-meta-item">☁️ {scene.cloud_cover?.toFixed(1) ?? '?'}% Cloud</span>
-                    <span className="scene-meta-item">🛰️ {scene.platform}</span>
-                    <span className="scene-meta-item">📍 Tile {scene.mgrs_tile}</span>
+              {scenes.scenes.map((scene, idx) => {
+                const sId = scene.scene_id || scene.id || `scene-${idx}`
+                const isSelected = (selectedScene?.scene_id || selectedScene?.id) === sId
+                const acqDate = scene.acquisition_date || scene.date || scene.sensing_time || ''
+                const tileCode = scene.mgrs_tile || scene.tile || 'Unknown'
+                return (
+                  <div
+                    key={sId}
+                    className={`scene-item ${isSelected ? 'selected' : ''}`}
+                    onClick={() => setSelectedScene(scene)}
+                    id={`scene-${sId.length >= 12 ? sId.slice(-12) : sId}`}
+                  >
+                    <div className="scene-id">{sId}</div>
+                    <div className="scene-meta">
+                      <span className="scene-meta-item">📅 {acqDate ? acqDate.slice(0, 10) : 'Recent'}</span>
+                      <span className="scene-meta-item">☁️ {scene.cloud_cover !== undefined ? Number(scene.cloud_cover).toFixed(1) : '?'}% Cloud</span>
+                      <span className="scene-meta-item">🛰️ {scene.platform || 'Sentinel-2'}</span>
+                      <span className="scene-meta-item">📍 Tile {tileCode}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           )}
         </div>
